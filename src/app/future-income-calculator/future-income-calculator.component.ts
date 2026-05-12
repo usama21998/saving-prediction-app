@@ -26,13 +26,12 @@ interface CalculationResult {
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './future-income-calculator.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush 
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FutureIncomeCalculator implements OnInit {
   history = signal<CalculationResult[]>([]);
   isBrowser = signal<boolean>(false);
   latestResult = computed(() => this.history()[0] ?? null);
-
   calcForm: FormGroup;
   private db!: IDBDatabase;
 
@@ -69,7 +68,7 @@ export class FutureIncomeCalculator implements OnInit {
 
     const { currentSalary, monthlySaving, years, increment } = this.calcForm.value;
     const savingsRate = monthlySaving / currentSalary;
-    
+
     const yearlyBreakdown: YearlyData[] = [];
     let totalSavings = 0;
     let runningSalary = currentSalary;
@@ -78,7 +77,7 @@ export class FutureIncomeCalculator implements OnInit {
     for (let i = 1; i <= years; i++) {
       const monthlySavingThisYear = runningSalary * savingsRate;
       const yearlyTotal = monthlySavingThisYear * 12;
-      
+
       yearlyBreakdown.push({
         year: i,
         salary: Math.round(runningSalary),
