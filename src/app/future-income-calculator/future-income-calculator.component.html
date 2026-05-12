@@ -70,7 +70,8 @@
                 <label
                   class="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest ml-1">Annual
                   Inc. %</label>
-                <input type="number" formControlName="increment" placeholder="10"
+                <input type="number" formControlName="increment" placeholder="10" max="100"
+                  oninput="if(this.value > 100) this.value = 100;"
                   class="w-full px-4 py-3 dark:text-white bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all shadow-sm">
               </div>
             </div>
